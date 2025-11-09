@@ -35,16 +35,17 @@ Hardware Trojans are stealthy backdoors inserted into IC designs that:
 
 ---
 
-##  Features
+## ✨ Features
 
 | Feature | Description |
 |---------|-------------|
-|  **Multi-Algorithm Detection** | Threshold-based, IQR outlier analysis, and Z-score normalization |
-|  **Stealthy Trojan** | Low-probability trigger (1/256) with minimal functional footprint |
-|  **Automated Pipeline** | End-to-end simulation, extraction, and analysis |
-|  **Rich Visualization** | 6-panel comprehensive report with statistical analysis |
-|  **Dual Platform** | Python and MATLAB analysis engines |
-|  **100% Detection Rate** | Successfully identifies all 4 Trojan signals |
+| 🎯 **Multi-Algorithm Detection** | Threshold-based, IQR outlier analysis, and Z-score normalization |
+| 🔬 **Multi-Scale Support** | 4-bit, 8-bit, and 16-bit ALU designs (scalability demonstration) |
+| 🕵️ **Stealthy Trojan** | Low-probability triggers (1/256 to 1/4B) with minimal footprint |
+| ⚡ **Automated Pipeline** | End-to-end simulation, extraction, and analysis |
+| 📊 **Rich Visualization** | 6-panel comprehensive report with statistical analysis |
+| 🐍 **Dual Platform** | Python and MATLAB analysis engines |
+| ✅ **100% Detection Rate** | Successfully identifies all Trojan signals across all bit-widths |
 
 ---
 
@@ -129,23 +130,47 @@ False Positives: 0
 
 ```
 Silicon_Sprint/
- rtl/                    # Verilog Hardware
-    alu_clean.v
-    alu_trojan.v
- testbench/              # Verification
- analysis/               # Detection Engines
-    trojan_detector.py
-    trojan_detector.m
- results/                # Outputs
-    alu_clean.vcd
-    alu_trojan.vcd
-    trojan_detection_report.png
- presentation/           # Demo Materials
+├── designs/                # Multi-Scale ALU Implementations
+│   ├── 4bit/              # 4-bit ALU (Embedded)
+│   ├── 8bit/              # 8-bit ALU (Microcontrollers)
+│   └── 16bit/             # 16-bit ALU (Processors)
+├── rtl/                    # Legacy 4-bit designs
+├── analysis/               # Detection Engines
+│   ├── trojan_detector.py
+│   └── trojan_detector.m
+├── results/                # Analysis outputs
+├── presentation/           # Demo materials
+├── run_multiscale_detection.py   # Multi-scale automation
+└── compare_bitwidths.py           # Scalability analysis
 ```
 
 ---
 
-##  Methodology
+## 🔬 Multi-Scale Architecture
+
+This project demonstrates **scalability** with three ALU implementations:
+
+| Bit-Width | Signals (Clean) | Trojan Signals | Trigger Rate | Test Vectors |
+|-----------|----------------|----------------|--------------|--------------|
+| **4-bit** | 7 | +4 backdoor | 1/256 | 1024 |
+| **8-bit** | 8 | +4 backdoor | 1/65536 | 1024+ |
+| **16-bit** | 9 | +6 backdoor | 1/4B | 2048+ |
+
+### Key Insight
+
+Side-channel detection works **regardless of bit-width**. Even triggers with 1-in-4-billion probability are detectable through switching activity analysis.
+
+```powershell
+# Run multi-scale detection
+python run_multiscale_detection.py
+
+# Compare across bit-widths
+python compare_bitwidths.py
+```
+
+---
+
+## 🔬 Methodology
 
 ### Design Comparison
 
