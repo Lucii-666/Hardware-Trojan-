@@ -3,7 +3,7 @@ HARDWARE TROJAN DETECTION REPORT
 Side-Channel Analysis via Switching Activity
 ================================================================================
 
-Report Generated: 2025-11-09 10:56:16
+Report Generated: 2025-11-09 17:36:39
 
 --------------------------------------------------------------------------------
 STATISTICAL SUMMARY

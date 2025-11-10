@@ -34,11 +34,11 @@ class MultiScaleDetector:
         
         if clean_verilog.exists() and clean_tb.exists():
             print(f"[1/2] Clean {bit_width} ALU...")
-            compile_cmd = f"iverilog -o {results_dir}/clean.vvp {clean_verilog} {clean_tb}"
-            subprocess.run(compile_cmd, shell=True, cwd=design_dir)
+            compile_cmd = f'iverilog -o "{results_dir.absolute()}/clean.vvp" "{clean_verilog.absolute()}" "{clean_tb.absolute()}"'
+            subprocess.run(compile_cmd, shell=True)
             
-            run_cmd = f"vvp {results_dir}/clean.vvp"
-            subprocess.run(run_cmd, shell=True, cwd=design_dir)
+            run_cmd = f'vvp "{results_dir.absolute()}/clean.vvp"'
+            subprocess.run(run_cmd, shell=True)
             
             # Move VCD file
             vcd_src = design_dir / f"alu_{bit_width}_clean.vcd"
@@ -52,11 +52,11 @@ class MultiScaleDetector:
         
         if trojan_verilog.exists() and trojan_tb.exists():
             print(f"[2/2] Trojan {bit_width} ALU...")
-            compile_cmd = f"iverilog -o {results_dir}/trojan.vvp {trojan_verilog} {trojan_tb}"
-            subprocess.run(compile_cmd, shell=True, cwd=design_dir)
+            compile_cmd = f'iverilog -o "{results_dir.absolute()}/trojan.vvp" "{trojan_verilog.absolute()}" "{trojan_tb.absolute()}"'
+            subprocess.run(compile_cmd, shell=True)
             
-            run_cmd = f"vvp {results_dir}/trojan.vvp"
-            subprocess.run(run_cmd, shell=True, cwd=design_dir)
+            run_cmd = f'vvp "{results_dir.absolute()}/trojan.vvp"'
+            subprocess.run(run_cmd, shell=True)
             
             # Move VCD file
             vcd_src = design_dir / f"alu_{bit_width}_trojan.vcd"
